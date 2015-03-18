@@ -30,7 +30,7 @@ public class Tabelfunction {
 
 		Connection connection = null;
 		try {
-			// create a database connection
+			// create a database connection das
 			connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
 			Statement statement = connection.createStatement();
 			statement.setQueryTimeout(30); // set timeout to 30 sec.
