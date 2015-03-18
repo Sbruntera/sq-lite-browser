@@ -108,9 +108,7 @@ public class Gui extends JFrame {
 			}
 		));
 		
-		tree.addTreeSelectionListener(e -> {
-			
-		});
+
 		
 		tree.setBackground(Color.LIGHT_GRAY);
 		// contentPane.add(tree, BorderLayout.WEST);
@@ -146,7 +144,15 @@ public class Gui extends JFrame {
 	}
 	
 	public void updateJTree(){
-		
+		tree.addTreeSelectionListener(e -> {
+			DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+			
+			if (node.getChildCount() == 0){
+				
+				
+				
+			}
+		});
 	}
 
 	public void updateTable(String[][] name) {
