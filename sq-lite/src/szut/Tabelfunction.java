@@ -13,11 +13,16 @@ public class Tabelfunction {
 		
 	}
 	
+	public void opentabel(Gui gui){
+		
+		
+	}
+	
 	
 	public void testvalues(Gui gui){
 		String[][] ungerade = { { "1", "9", "4" }, { "0", "2" },
 				{ "0", "1", "2", "3", "4" } };
-		gui.update(ungerade);
+		gui.updateTable(ungerade);
 		
 	}
 	

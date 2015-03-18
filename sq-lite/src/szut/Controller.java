@@ -2,7 +2,7 @@ package szut;
 
 public class Controller {
 	
-	Tabelfunction tf;
+	Tabelfunction tf = new Tabelfunction();
 	static Gui gui;
 	
 	public static void main(String[] args){
@@ -12,9 +12,12 @@ public class Controller {
 	}
 	
 	public void testtabel(){
-		System.out.println("hay");
 		tf.testvalues(gui);
 		
+	}
+	
+	public void opendatabase(){
+		tf.opentabel(gui);
 	}
 
 	public void loadtabel() {
