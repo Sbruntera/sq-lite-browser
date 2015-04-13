@@ -61,7 +61,7 @@ public class Gui extends JFrame {
 	public JFormattedTextField textField_von;
 	public JFormattedTextField textField_bis;
 	
-	Controller ct = new Controller();
+	Controller ct;
 	Gui frame;
 	LastNode ln = new LastNode();
 
@@ -70,7 +70,7 @@ public class Gui extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new Gui();
+					frame = new Gui(ct);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -80,7 +80,8 @@ public class Gui extends JFrame {
 	}
 
 	// Alle GUI komponenten
-	public Gui() {
+	public Gui(Controller controller) {
+		ct = controller;
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent arg0) {

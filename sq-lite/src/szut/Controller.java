@@ -23,9 +23,11 @@ public class Controller {
 	 * @param args
 	 */
 	public static void main(String[] args){
-		loadINIfile();
-		gui = new Gui();
-		gui.run();	
+		Controller controller = new Controller();
+		
+		gui = new Gui(controller);
+		gui.run();
+		controller.loadINIfile();
 	}
 	
 	/**
@@ -130,13 +132,24 @@ public class Controller {
 	 * Speichert die derzeitigen Daten
 	 */
 	public void saveINIfile(){
-		loader.save(gui);
+		System.out.println(lc.getLocation());
+		loader.save(gui, lc.getLocation());
+		
 	}
 	
 	/**
 	 * Läd vorhandene daten
 	 */
-	public static void loadINIfile(){
+	public void loadINIfile(){
 		loader.load();
+		try {
+			if (!loader.getInidatabase().toString().equals("null")){
+				opendatabase(loader.getInidatabase());
+			}
+		} catch (ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(gui, e.getMessage());
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(gui, e.getMessage());
+		}
 	}
 }

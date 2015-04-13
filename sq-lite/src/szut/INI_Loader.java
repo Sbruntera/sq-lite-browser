@@ -1,5 +1,6 @@
 package szut;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Properties;
@@ -20,6 +21,8 @@ public class INI_Loader {
 	private int positionleft = 100;
 	private int positionhight = 100;
 	
+	private File inidatabase = null;
+	
 	/**
 	 * Läd die datei und speichert sie in Gettern/Settern
 	 */
@@ -31,8 +34,7 @@ public class INI_Loader {
 			setSizevertikal(Integer.parseInt(p.getProperty("DBSizevertikal")));
 			setPositionhight(Integer.parseInt(p.getProperty("DBPositionhight")));
 			setPositionleft(Integer.parseInt(p.getProperty("DBPositionleft")));
-
-
+			setInidatabase(new File(p.getProperty("DBDatabase")));
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -42,7 +44,7 @@ public class INI_Loader {
 	 * Sammelt alle Informationen und speichert sie in der .ini Datei
 	 * @param gui
 	 */
-	public void save(Gui gui) {
+	public void save(Gui gui, File file) {
 		try {
 			Properties p = new Properties();
 			p.load(new FileInputStream("settings.props"));
@@ -56,6 +58,14 @@ public class INI_Loader {
 			p.setProperty("DBSizevertikal", Sizevertikal);
 			p.setProperty("DBPositionhight", Positionhight);
 			p.setProperty("DBPositionleft", Positionleft);
+			
+			// Falls kein Dateipfad vorhanden ist, wird es auf "null" gesetzt
+			if (file != null){
+				System.out.println(file.toString());
+				p.setProperty("DBDatabase", file.toString());
+			}else{
+				p.setProperty("DBDatabase", "null");
+			}
 			
 		    FileOutputStream out = new FileOutputStream("settings.props");
 		    p.store(out, "/* properties updated */");
@@ -99,6 +109,14 @@ public class INI_Loader {
 
 	public void setSizevertikal(int sizevertikal) {
 		this.sizevertikal = sizevertikal;
+	}
+
+	public File getInidatabase() {
+		return inidatabase;
+	}
+
+	public void setInidatabase(File inidatabase) {
+		this.inidatabase = inidatabase;
 	}
 
 }
